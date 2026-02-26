@@ -1,0 +1,42 @@
+
+Original DataFrame:
++-------+-----------+------+--------+
+|product|   category| price|quantity|
++-------+-----------+------+--------+
+| Laptop|Electronics|999.99|       5|
+|  Mouse|Electronics| 29.99|      50|
+|   Desk|  Furniture|199.99|      10|
+|  Chair|  Furniture|149.99|      20|
+|Monitor|Electronics|299.99|      15|
++-------+-----------+------+--------+
+
+Total products: 5
+
+Revenue per product:
++-------+-----------+------+--------+-------+
+|product|   category| price|quantity|revenue|
++-------+-----------+------+--------+-------+
+| Laptop|Electronics|999.99|       5|4999.95|
+|  Mouse|Electronics| 29.99|      50| 1499.5|
+|   Desk|  Furniture|199.99|      10| 1999.9|
+|  Chair|  Furniture|149.99|      20| 2999.8|
+|Monitor|Electronics|299.99|      15|4499.85|
++-------+-----------+------+--------+-------+
+
+Electronics only:
++-------+-----------+------+--------+
+|product|   category| price|quantity|
++-------+-----------+------+--------+
+| Laptop|Electronics|999.99|       5|
+|  Mouse|Electronics| 29.99|      50|
+|Monitor|Electronics|299.99|      15|
++-------+-----------+------+--------+
+
+Revenue by category:
++-----------+-------------+
+|   category|total_revenue|
++-----------+-------------+
+|Electronics|      10999.3|
+|  Furniture|       4999.7|
++-----------+-------------+
+
