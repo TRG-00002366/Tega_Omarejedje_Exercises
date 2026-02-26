@@ -1,0 +1,10 @@
+Header: product_id,name,category,price,quantity
+Data records: 7
+First record: P001,Laptop,Electronics,999.99,5
+{'product_id': 'P001', 'name': 'Laptop', 'category': 'Electronics', 'price': 999.99, 'quantity': 5}
+{'product_id': 'P002', 'name': 'Mouse', 'category': 'Electronics', 'price': 29.99, 'quantity': 50}
+{'product_id': 'P003', 'name': 'Desk', 'category': 'Furniture', 'price': 199.99, 'quantity': 10}
+Saved revenue output to: output_revenue/
+All data records (wildcard): 14
+Sample wildcard record: P001,Laptop,Electronics,999.99,5
+Saved single-part revenue output to: output_revenue_single/

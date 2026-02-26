@@ -1,0 +1,8 @@
+product_id,name,category,price,quantity
+P008,Webcam,Electronics,59.99,40
+P009,Table,Furniture,249.99,8
+P010,Headphones,Electronics,199.99,18
+P011,Bookshelf,Furniture,129.99,12
+P012,Smartphone,Electronics,699.99,7
+P013,Rug,Furniture,89.99,22
+P014,Printer,Electronics,149.99,9

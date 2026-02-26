@@ -1,0 +1,20 @@
+Word Counts (top 10):
+  spark: 4
+  is: 3
+  and: 2
+  python: 2
+  for: 2
+  java: 1
+  used: 1
+  apis: 1
+  scala: 1
+  processing: 1
+Inner join: [('P002', ('Mouse', 29)), ('P003', ('Keyboard', 79)), ('P001', ('Laptop', 999))]
+Left join: [('P002', ('Mouse', 29)), ('P003', ('Keyboard', 79)), ('P004', ('Monitor', None)), ('P001', ('Laptop', 999))]
+Right join: [('P002', ('Mouse', 29)), ('P005', (None, 199)), ('P003', ('Keyboard', 79)), ('P001', ('Laptop', 999))]
+Full join: [('P002', ('Mouse', 29)), ('P005', (None, 199)), ('P003', ('Keyboard', 79)), ('P004', ('Monitor', None)), ('P001', ('Laptop', 999))]
+Employee counts: [('Engineering', 3), ('HR', 1), ('Sales', 2)]
+Total salaries: [('Engineering', 270000), ('HR', 60000), ('Sales', 145000)]
+Average salaries: [('Engineering', 90000.0), ('HR', 60000.0), ('Sales', 72500.0)]
+Alphabetical: [('a', 1), ('and', 2), ('apache', 1), ('api', 1), ('apis', 1), ('big', 1), ('data', 1), ('engine', 1), ('fast', 1), ('for', 2)]
+Reverse: [('used', 1), ('the', 1), ('spark', 4), ('scala', 1), ('python', 2), ('pyspark', 1), ('provides', 1), ('processing', 1), ('java', 1), ('is', 3)]
