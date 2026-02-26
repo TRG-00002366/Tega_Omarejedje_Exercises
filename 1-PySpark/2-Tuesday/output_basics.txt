@@ -1,0 +1,14 @@
+Numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Partitions: 12
+Numbers (4 partitions): [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Partitions (explicit): 4
+Range 1..100 count: 100
+Range first 10: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Squared: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Prefixed: ['num_1', 'num_2', 'num_3', 'num_4', 'num_5', 'num_6', 'num_7', 'num_8', 'num_9', 'num_10']
+Evens: [2, 4, 6, 8, 10]
+Greater than 5: [6, 7, 8, 9, 10]
+Combined (even and >5): [6, 8, 10]
+Words: ['Hello', 'World', 'Apache', 'Spark', 'is', 'Fast', 'PySpark', 'is', 'Python', 'plus', 'Spark']
+Word lengths: [('Hello', 5), ('World', 5), ('Apache', 6), ('Spark', 5), ('is', 2), ('Fast', 4), ('PySpark', 7), ('is', 2), ('Python', 6), ('plus', 4), ('Spark', 5)]
+Error words: ['ERROR:', 'CONNECTION', 'FAILED', 'ERROR:', 'TIMEOUT', 'OCCURRED']

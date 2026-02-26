@@ -1,0 +1,9 @@
+Records processed: 100
+Total records: 8
+Valid records: 5
+Invalid records: 3
+Error rate: 37.5%
+Electronics: 3
+Clothing: 2
+Food: 2
+Total sales: $1627
