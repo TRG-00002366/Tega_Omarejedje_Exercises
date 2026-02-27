@@ -1,0 +1,102 @@
+
+T4 Total characters: 581424
+
+T5 Longest line length: 72
+T5 Longest line:
+opponent. So far I was clear. The question now was, who was the man, and
+
+T6 Lines containing Watson: 81
+T6 Sample (first 5):
+“Wedlock suits you,” he remarked. “I think, Watson, that you have put
+fancy, Watson. And in practice again, I observe. You did not tell me
+and fifty guineas apiece. There’s money in this case, Watson, if there
+Watson, who is occasionally good enough to help me in my cases. Whom
+some good news for you. And good-night, Watson,” he added, as the
+
+T7 Unique vocabulary count: 10398
+
+T8 Top 10 frequent words:
+  the: 5717
+  and: 2936
+  of: 2765
+  to: 2735
+  a: 2652
+  i: 2600
+  in: 1789
+  that: 1655
+  it: 1477
+  he: 1417
+
+T9 First-word counts (top 10):
+  the: 381
+  “i: 252
+  and: 155
+  to: 133
+  of: 112
+  i: 98
+  that: 98
+  “and: 93
+  “it: 92
+  “you: 92
+
+T10 Average word length: 4.22
+
+T11 Word length distribution (first 15 lengths):
+  1-letter words: 5347
+  2-letter words: 19834
+  3-letter words: 24106
+  4-letter words: 20646
+  5-letter words: 11937
+  6-letter words: 8640
+  7-letter words: 6530
+  8-letter words: 4361
+  9-letter words: 2690
+  10-letter words: 1700
+  11-letter words: 876
+  12-letter words: 481
+  13-letter words: 240
+  14-letter words: 103
+  15-letter words: 30
+
+T12 Extracted lines count: 1080
+T12 Preview first 20 lines:
+I. A SCANDAL IN BOHEMIA
+
+
+I.
+
+To Sherlock Holmes she is always _the_ woman. I have seldom heard him
+mention her under any other name. In his eyes she eclipses and
+predominates the whole of her sex. It was not that he felt any emotion
+akin to love for Irene Adler. All emotions, and that one particularly,
+were abhorrent to his cold, precise but admirably balanced mind. He
+was, I take it, the most perfect reasoning and observing machine that
+the world has seen, but as a lover he would have placed himself in a
+false position. He never spoke of the softer passions, save with a gibe
+and a sneer. They were admirable things for the observer—excellent for
+drawing the veil from men’s motives and actions. But for the trained
+reasoner to admit such intrusions into his own delicate and finely
+adjusted temperament was to introduce a distracting factor which might
+throw a doubt upon all his mental results. Grit in a sensitive
+instrument, or a crack in one of his own high-power lenses, would not
+be more disturbing than a strong emotion in a nature such as his. And
+
+O3 Word-length pairs (first 10):
+[(3, 'the'), (7, 'project'), (9, 'gutenberg'), (5, 'ebook'), (2, 'of'), (3, 'the'), (10, 'adventures'), (2, 'of'), (8, 'sherlock'), (6, 'holmes')]
+
+O4 Letter frequency (top 10):
+  e: 54957
+  t: 40483
+  a: 36130
+  o: 34852
+  i: 31220
+  n: 29682
+  h: 29587
+  s: 27920
+  r: 25694
+  d: 19051
+
+O5 Grouped words sample (letters a, s, t):
+  t: ['the', 'the', 'this', 'the', 'the', 'the', 'the', 'terms', 'the', 'this'] (showing first 10)
+  a: ['adventures', 'arthur', 'anyone', 'anywhere', 'and', 'at', 'and', 'almost', 'away', 'at'] (showing first 10)
+  s: ['sherlock', 'states', 'states', 'sherlock', 'set', 'start', 'sherlock', 'sherlock', 'scandal', 'speckled'] (showing first 10)
