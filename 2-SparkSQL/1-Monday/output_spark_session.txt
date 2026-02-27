@@ -1,0 +1,29 @@
+=== Task 1: Basic SparkSession ===
+Spark version: 3.5.1
+Application ID: local-1772199867342
+Default parallelism: 12
++---+-------+---+
+| id|   name|age|
++---+-------+---+
+|  1|  Alice| 25|
+|  2|    Bob| 30|
+|  3|Charlie| 35|
+|  4|  Diana| 28|
+|  5|    Eve| 40|
++---+-------+---+
+
+
+=== Task 2: Configuration ===
+Shuffle partitions: 200
+Adaptive execution enabled: true
+Driver memory: NOT SET
+Executor memory: NOT SET
+Updated shuffle partitions: 50
+
+=== Task 3: getOrCreate() Behavior ===
+spark app name: MyFirstSparkSQLApp
+spark2 app name: MyFirstSparkSQLApp
+Are spark and spark2 the same object? True
+
+=== Task 4: Cleanup ===
+Is stopped before stop()? False

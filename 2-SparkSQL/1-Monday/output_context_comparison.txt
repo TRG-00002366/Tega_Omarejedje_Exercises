@@ -1,0 +1,39 @@
+=== Task 1: SparkSession and SparkContext Relationship ===
+SparkSession app name: ContextComparison
+SparkContext app name: ContextComparison
+SparkSession app ID: local-1772199470826
+SparkContext app ID: local-1772199470826
+
+=== Task 2: RDD vs DataFrame Operations ===
+RDD doubled:
+[2, 4, 6, 8, 10]
+DataFrame doubled:
++-----+-------------+
+|value|value_doubled|
++-----+-------------+
+|    1|            2|
+|    2|            4|
+|    3|            6|
+|    4|            8|
+|    5|           10|
++-----+-------------+
+
+RDD -> DataFrame:
++-----+
+|value|
++-----+
+|    1|
+|    2|
+|    3|
+|    4|
+|    5|
++-----+
+
+DataFrame -> RDD (first 3):
+[Row(value=1), Row(value=2), Row(value=3)]
+
+=== Task 3: Broadcast and Accumulator ===
+Mapped states: ['New York', 'California', 'Texas', 'New York', 'California']
+Items processed: 5
+
+=== Conceptual Questions ===
