@@ -1,0 +1,195 @@
+=== Exercise: Set Operations ===
+
+January Customers:
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
++-----------+-------+-----------------+
+
+February Customers:
++-----------+-----+---------------+
+|customer_id| name|          email|
++-----------+-----+---------------+
+|          2|  Bob|  bob@email.com|
+|          4|Diana|diana@email.com|
+|          5|  Eve|  eve@email.com|
+|          6|Frank|frank@email.com|
++-----------+-----+---------------+
+
+March Customers (different column order!):
++---------------+-----+-----------+
+|          email| name|customer_id|
++---------------+-----+-----------+
+|grace@email.com|Grace|          7|
+|henry@email.com|Henry|          8|
+|  bob@email.com|  Bob|          2|
++---------------+-----+-----------+
+
+
+--- Task 1: Union ---
+Union Jan + Feb (with duplicates):
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          2|    Bob|    bob@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
++-----------+-------+-----------------+
+
+Union Jan + Feb (distinct):
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
++-----------+-------+-----------------+
+
+Union across all three months using unionByName:
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          2|    Bob|    bob@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
+|          7|  Grace|  grace@email.com|
+|          8|  Henry|  henry@email.com|
+|          2|    Bob|    bob@email.com|
++-----------+-------+-----------------+
+
+Unique customers across Jan+Feb+Mar: 8
+Unique customers across all three months:
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
+|          7|  Grace|  grace@email.com|
+|          8|  Henry|  henry@email.com|
++-----------+-------+-----------------+
+
+
+--- Task 2: Intersect ---
+Customers in BOTH Jan and Feb:
++-----------+-----+---------------+
+|customer_id| name|          email|
++-----------+-----+---------------+
+|          4|Diana|diana@email.com|
+|          2|  Bob|  bob@email.com|
++-----------+-----+---------------+
+
+
+--- Task 3: Subtract/Except ---
+Customers in Jan but NOT in Feb:
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          3|Charlie|charlie@email.com|
++-----------+-------+-----------------+
+
+New customers in Feb (not in Jan):
++-----------+-----+---------------+
+|customer_id| name|          email|
++-----------+-----+---------------+
+|          5|  Eve|  eve@email.com|
+|          6|Frank|frank@email.com|
++-----------+-----+---------------+
+
+
+--- Task 4: Deduplication ---
+Distinct rows (exact duplicates removed):
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
++-----------+-------+-----------------+
+
+Drop duplicates by email only:
++-----------+-------+-----------------+
+|customer_id|   name|            email|
++-----------+-------+-----------------+
+|          1|  Alice|  alice@email.com|
+|          2|    Bob|    bob@email.com|
+|          3|Charlie|charlie@email.com|
+|          4|  Diana|  diana@email.com|
+|          5|    Eve|    eve@email.com|
+|          6|  Frank|  frank@email.com|
++-----------+-------+-----------------+
+
+
+--- Challenge: Data Reconciliation ---
+Source:
++---+---------+-----+
+| id|     name|price|
++---+---------+-----+
+|  1|Product A|  100|
+|  2|Product B|  200|
+|  3|Product C|  300|
++---+---------+-----+
+
+Target:
++---+---------+-----+
+| id|     name|price|
++---+---------+-----+
+|  1|Product A|  100|
+|  2|Product B|  250|
+|  4|Product D|  400|
++---+---------+-----+
+
+Exact matches (source ∩ target):
++---+---------+-----+
+| id|     name|price|
++---+---------+-----+
+|  1|Product A|  100|
++---+---------+-----+
+
+Source-only (or different):
++---+---------+-----+
+| id|     name|price|
++---+---------+-----+
+|  2|Product B|  200|
+|  3|Product C|  300|
++---+---------+-----+
+
+Target-only (or different):
++---+---------+-----+
+| id|     name|price|
++---+---------+-----+
+|  2|Product B|  250|
+|  4|Product D|  400|
++---+---------+-----+
+
+Reconciliation report:
++-------------+-----------------+-----------------+
+|matched_count|source_only_count|target_only_count|
++-------------+-----------------+-----------------+
+|            1|                2|                2|
++-------------+-----------------+-----------------+
+

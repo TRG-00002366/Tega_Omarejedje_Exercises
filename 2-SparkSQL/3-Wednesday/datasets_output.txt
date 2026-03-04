@@ -1,0 +1,101 @@
+=== Exercise: Datasets and Type Safety ===
+
+--- Task 1: Row Objects ---
++-------+---+-----------+
+|   name|age| department|
++-------+---+-----------+
+|  Alice| 30|Engineering|
+|    Bob| 25|  Marketing|
+|Charlie| 35|      Sales|
++-------+---+-----------+
+
+Attribute access: Alice
+Index access: Alice
+Key access: Alice
+Row as dict: {'name': 'Alice', 'age': 30, 'department': 'Engineering'}
+
+--- Task 2: Explicit Schemas ---
++---+-------------+------+-----------+
+| id|         name| price|   category|
++---+-------------+------+-----------+
+|  1|       Laptop|999.99|Electronics|
+|  2| Coffee Maker| 49.99|       Home|
+|  3|Running Shoes|  NULL|     Sports|
++---+-------------+------+-----------+
+
+root
+ |-- id: integer (nullable = false)
+ |-- name: string (nullable = true)
+ |-- price: double (nullable = true)
+ |-- category: string (nullable = true)
+
+
+--- Task 3: Schema Validation ---
+Incoming data:
++---+-------+---+-----------+
+| id|   name|age| department|
++---+-------+---+-----------+
+|  1|  Alice| 30|Engineering|
+|  2|   NULL| 25|  Marketing|
+|  3|Charlie| -5|      Sales|
+|  4|  Diana|150|Engineering|
++---+-------+---+-----------+
+
+Valid:
++---+-----+---+-----------+
+| id| name|age| department|
++---+-----+---+-----------+
+|  1|Alice| 30|Engineering|
++---+-----+---+-----------+
+
+Invalid:
++---+-------+---+-----------+
+| id|   name|age| department|
++---+-------+---+-----------+
+|  2|   NULL| 25|  Marketing|
+|  3|Charlie| -5|      Sales|
+|  4|  Diana|150|Engineering|
++---+-------+---+-----------+
+
+
+--- Task 4: RDD Typed Transformations ---
++-------+---+--------+
+|   name|age|category|
++-------+---+--------+
+|  Alice| 30|  Senior|
+|    Bob| 25|   Young|
+|Charlie| 35|  Senior|
++-------+---+--------+
+
+
+--- Task 5: Schema Evolution ---
+V1 schema:
+root
+ |-- id: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- price: double (nullable = true)
+
+V2 schema:
+root
+ |-- id: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- price: double (nullable = true)
+ |-- category: string (nullable = true)
+
++---+--------+-----+-----------+
+| id|    name|price|   category|
++---+--------+-----+-----------+
+|  1|Widget A|19.99|       NULL|
+|  2|Widget B|29.99|       NULL|
+|  3|Widget C|39.99|Electronics|
+|  4|Widget D|49.99|       Home|
++---+--------+-----+-----------+
+
+root
+ |-- id: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- price: double (nullable = true)
+ |-- category: string (nullable = true)
+
+
+--- Conceptual Questions ---
