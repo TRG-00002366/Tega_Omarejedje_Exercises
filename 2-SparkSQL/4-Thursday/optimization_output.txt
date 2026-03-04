@@ -1,0 +1,124 @@
+Generating sample data...
+Sales: 50000 rows
+Customers: 1000 rows
+Products: 50 rows
+
+============================================================
+PHASE 1: ANALYZE THE BASELINE
+============================================================
+
+============================================================
+RUNNING BASELINE PIPELINE
+============================================================
+
+Generating Report 1: Sales by Customer...
+Generating Report 2: Sales by Product...
+Generating Report 3: Sales by State...
+Generating Report 4: Top Customers per State...
+Generating Report 5: Monthly Trend...
+
+BASELINE COMPLETED in 5.12 seconds
+
+EXPLAIN: sales join customers
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- Project [customer_id#1L, txn_id#0L, product_id#2L, amount#3L, date#4, name#11, state#12]
+   +- SortMergeJoin [customer_id#1L], [customer_id#10L], Inner
+      :- Sort [customer_id#1L ASC NULLS FIRST], false, 0
+      :  +- Exchange hashpartitioning(customer_id#1L, 200), ENSURE_REQUIREMENTS, [plan_id=1729]
+      :     +- Filter isnotnull(customer_id#1L)
+      :        +- Scan ExistingRDD[txn_id#0L,customer_id#1L,product_id#2L,amount#3L,date#4]
+      +- Sort [customer_id#10L ASC NULLS FIRST], false, 0
+         +- Exchange hashpartitioning(customer_id#10L, 200), ENSURE_REQUIREMENTS, [plan_id=1730]
+            +- Filter isnotnull(customer_id#10L)
+               +- Scan ExistingRDD[customer_id#10L,name#11,state#12]
+
+
+
+EXPLAIN: sales join products
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- Project [product_id#2L, txn_id#0L, customer_id#1L, amount#3L, date#4, product_name#17, category#18]
+   +- SortMergeJoin [product_id#2L], [product_id#16L], Inner
+      :- Sort [product_id#2L ASC NULLS FIRST], false, 0
+      :  +- Exchange hashpartitioning(product_id#2L, 200), ENSURE_REQUIREMENTS, [plan_id=1760]
+      :     +- Filter isnotnull(product_id#2L)
+      :        +- Scan ExistingRDD[txn_id#0L,customer_id#1L,product_id#2L,amount#3L,date#4]
+      +- Sort [product_id#16L ASC NULLS FIRST], false, 0
+         +- Exchange hashpartitioning(product_id#16L, 200), ENSURE_REQUIREMENTS, [plan_id=1761]
+            +- Filter isnotnull(product_id#16L)
+               +- Scan ExistingRDD[product_id#16L,product_name#17,category#18]
+
+
+Sales partitions: 12
+Customers partitions: 12
+Products partitions: 12
+Shuffle partitions (current): 200
+
+============================================================
+PHASE 2: APPLY CACHING
+============================================================
+
+RUNNING CACHED PIPELINE
+CACHED COMPLETED in 5.54 seconds
+CACHED pipeline time: 5.54s
+Improvement: -8.2%
+
+============================================================
+PHASE 3: OPTIMIZE PARTITIONING
+============================================================
+
+RUNNING PARTITIONED PIPELINE
+PARTITIONED COMPLETED in 1.55 seconds
+PARTITIONED pipeline time: 1.55s
+Improvement vs baseline: 69.7%
+
+============================================================
+PHASE 4: IMPLEMENT BUCKETING
+============================================================
+Bucketed tables created: sales_bucketed, customers_bucketed, products_bucketed
+
+RUNNING BUCKETED PIPELINE
+
+EXPLAIN: bucketed sales join bucketed customers
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- Project [customer_id#3147L, txn_id#3146L, product_id#3148L, amount#3149L, date#3150, name#3157, state#3158]
+   +- BroadcastHashJoin [customer_id#3147L], [customer_id#3156L], Inner, BuildRight, false
+      :- Filter isnotnull(customer_id#3147L)
+      :  +- FileScan parquet spark_catalog.default.sales_bucketed[txn_id#3146L,customer_id#3147L,product_id#3148L,amount#3149L,date#3150] Batched: true, Bucketed: false (disabled by query planner), DataFilters: [isnotnull(customer_id#3147L)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/tega/exercises/2-SparkSQL/4-Thursday/spark-warehouse/sales_..., PartitionFilters: [], PushedFilters: [IsNotNull(customer_id)], ReadSchema: struct<txn_id:bigint,customer_id:bigint,product_id:bigint,amount:bigint,date:string>
+      +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3828]
+         +- Filter isnotnull(customer_id#3156L)
+            +- FileScan parquet spark_catalog.default.customers_bucketed[customer_id#3156L,name#3157,state#3158] Batched: true, Bucketed: false (disabled by query planner), DataFilters: [isnotnull(customer_id#3156L)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/tega/exercises/2-SparkSQL/4-Thursday/spark-warehouse/custom..., PartitionFilters: [], PushedFilters: [IsNotNull(customer_id)], ReadSchema: struct<customer_id:bigint,name:string,state:string>
+
+
+
+EXPLAIN: bucketed sales join bucketed products
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- BroadcastHashJoin [product_id#3148L], [product_id#3162L], Inner, BuildRight, false
+   :- Filter isnotnull(product_id#3148L)
+   :  +- FileScan parquet spark_catalog.default.sales_bucketed[txn_id#3146L,customer_id#3147L,product_id#3148L,amount#3149L,date#3150] Batched: true, Bucketed: false (disabled by query planner), DataFilters: [isnotnull(product_id#3148L)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/tega/exercises/2-SparkSQL/4-Thursday/spark-warehouse/sales_..., PartitionFilters: [], PushedFilters: [IsNotNull(product_id)], ReadSchema: struct<txn_id:bigint,customer_id:bigint,product_id:bigint,amount:bigint,date:string>
+   +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3858]
+      +- Filter isnotnull(product_id#3162L)
+         +- FileScan parquet spark_catalog.default.products_bucketed[product_id#3162L,product_name#3163,category#3164] Batched: true, Bucketed: false (disabled by query planner), DataFilters: [isnotnull(product_id#3162L)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/tega/exercises/2-SparkSQL/4-Thursday/spark-warehouse/produc..., PartitionFilters: [], PushedFilters: [IsNotNull(product_id)], ReadSchema: struct<product_id:bigint,product_name:string,category:string>
+
+
+BUCKETED COMPLETED in 2.09 seconds
+
+============================================================
+PHASE 5: FINAL OPTIMIZED PIPELINE
+============================================================
+
+============================================================
+PERFORMANCE COMPARISON
+============================================================
+
+RUNNING FULLY OPTIMIZED PIPELINE
+OPTIMIZED COMPLETED in 1.36 seconds
+Baseline time:     5.12s
+Cached time:       5.54s
+Partitioned time:  1.55s
+Bucketed time:     2.09s
+Optimized time:    1.36s
+Improvement:       73.4%
