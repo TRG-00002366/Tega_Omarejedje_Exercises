@@ -1,0 +1,191 @@
+=== Exercise: DataFrame Operations ===
+
+Employee Data:
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  2|    Bob|  Marketing| 65000|2019-06-01|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  4|  Diana|      Sales| 55000|2018-11-10|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  6|  Frank|Engineering| 72000|2022-01-10|
+|  7|  Grace|      Sales| 58000|2021-07-15|
++---+-------+-----------+------+----------+
+
+
+--- Task 1: Schema Inspection ---
+root
+ |-- id: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- department: string (nullable = true)
+ |-- salary: long (nullable = true)
+ |-- hire_date: string (nullable = true)
+
+Columns: ['id', 'name', 'department', 'salary', 'hire_date']
+Dtypes: [('id', 'bigint'), ('name', 'string'), ('department', 'string'), ('salary', 'bigint'), ('hire_date', 'string')]
+Row count: 7
+Column count: 5
+
+--- Task 2: Column Selection ---
++-------+------+
+|   name|salary|
++-------+------+
+|  Alice| 75000|
+|    Bob| 65000|
+|Charlie| 80000|
+|  Diana| 55000|
+|    Eve| 70000|
+|  Frank| 72000|
+|  Grace| 58000|
++-------+------+
+
++-------+-----------+------+----------+
+|   name| department|salary| hire_date|
++-------+-----------+------+----------+
+|  Alice|Engineering| 75000|2020-01-15|
+|    Bob|  Marketing| 65000|2019-06-01|
+|Charlie|Engineering| 80000|2021-03-20|
+|  Diana|      Sales| 55000|2018-11-10|
+|    Eve|  Marketing| 70000|2020-09-05|
+|  Frank|Engineering| 72000|2022-01-10|
+|  Grace|      Sales| 58000|2021-07-15|
++-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+-----------------+
+| id|   name| department|salary| hire_date|   monthly_salary|
++---+-------+-----------+------+----------+-----------------+
+|  1|  Alice|Engineering| 75000|2020-01-15|           6250.0|
+|  2|    Bob|  Marketing| 65000|2019-06-01|5416.666666666667|
+|  3|Charlie|Engineering| 80000|2021-03-20|6666.666666666667|
+|  4|  Diana|      Sales| 55000|2018-11-10|4583.333333333333|
+|  5|    Eve|  Marketing| 70000|2020-09-05|5833.333333333333|
+|  6|  Frank|Engineering| 72000|2022-01-10|           6000.0|
+|  7|  Grace|      Sales| 58000|2021-07-15|4833.333333333333|
++---+-------+-----------+------+----------+-----------------+
+
+
+--- Task 3: Adding and Modifying Columns ---
++---+-------+-----------+------+----------+-------+
+| id|   name| department|salary| hire_date|country|
++---+-------+-----------+------+----------+-------+
+|  1|  Alice|Engineering| 75000|2020-01-15|    USA|
+|  2|    Bob|  Marketing| 65000|2019-06-01|    USA|
+|  3|Charlie|Engineering| 80000|2021-03-20|    USA|
+|  4|  Diana|      Sales| 55000|2018-11-10|    USA|
+|  5|    Eve|  Marketing| 70000|2020-09-05|    USA|
+|  6|  Frank|Engineering| 72000|2022-01-10|    USA|
+|  7|  Grace|      Sales| 58000|2021-07-15|    USA|
++---+-------+-----------+------+----------+-------+
+
++---+-------+-----------+------+----------+-------+-----------+
+| id|   name| department|salary| hire_date|country|salary_tier|
++---+-------+-----------+------+----------+-------+-----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|    USA|     Senior|
+|  2|    Bob|  Marketing| 65000|2019-06-01|    USA|        Mid|
+|  3|Charlie|Engineering| 80000|2021-03-20|    USA|     Senior|
+|  4|  Diana|      Sales| 55000|2018-11-10|    USA|      Entry|
+|  5|    Eve|  Marketing| 70000|2020-09-05|    USA|        Mid|
+|  6|  Frank|Engineering| 72000|2022-01-10|    USA|        Mid|
+|  7|  Grace|      Sales| 58000|2021-07-15|    USA|      Entry|
++---+-------+-----------+------+----------+-------+-----------+
+
++---+-------+-----------+------+----------+-------+-----------+----------+
+| id|   name| department|salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|    USA|     Senior|     ALICE|
+|  2|    Bob|  Marketing| 65000|2019-06-01|    USA|        Mid|       BOB|
+|  3|Charlie|Engineering| 80000|2021-03-20|    USA|     Senior|   CHARLIE|
+|  4|  Diana|      Sales| 55000|2018-11-10|    USA|      Entry|     DIANA|
+|  5|    Eve|  Marketing| 70000|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering| 72000|2022-01-10|    USA|        Mid|     FRANK|
+|  7|  Grace|      Sales| 58000|2021-07-15|    USA|      Entry|     GRACE|
++---+-------+-----------+------+----------+-------+-----------+----------+
+
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  2|    Bob|  Marketing|68250.0|2019-06-01|    USA|        Mid|       BOB|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  4|  Diana|      Sales|57750.0|2018-11-10|    USA|      Entry|     DIANA|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
+|  7|  Grace|      Sales|60900.0|2021-07-15|    USA|      Entry|     GRACE|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
+
+--- Task 4: Filtering Rows ---
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  6|  Frank|Engineering| 72000|2022-01-10|
++---+-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  6|  Frank|Engineering| 72000|2022-01-10|
++---+-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  2|    Bob|  Marketing| 65000|2019-06-01|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  6|  Frank|Engineering| 72000|2022-01-10|
++---+-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  6|  Frank|Engineering| 72000|2022-01-10|
++---+-------+-----------+------+----------+
+
+
+--- Task 5: Sorting ---
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  4|  Diana|      Sales| 55000|2018-11-10|
+|  7|  Grace|      Sales| 58000|2021-07-15|
+|  2|    Bob|  Marketing| 65000|2019-06-01|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  6|  Frank|Engineering| 72000|2022-01-10|
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  3|Charlie|Engineering| 80000|2021-03-20|
++---+-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  6|  Frank|Engineering| 72000|2022-01-10|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  2|    Bob|  Marketing| 65000|2019-06-01|
+|  7|  Grace|      Sales| 58000|2021-07-15|
+|  4|  Diana|      Sales| 55000|2018-11-10|
++---+-------+-----------+------+----------+
+
+
+--- Task 6: Complete Pipeline ---
++-------+-----------+------+------+
+|   name| department|salary| bonus|
++-------+-----------+------+------+
+|Charlie|Engineering| 80000|8000.0|
+|  Alice|Engineering| 75000|7500.0|
+|  Frank|Engineering| 72000|7200.0|
+|    Eve|  Marketing| 70000|7000.0|
+|  Grace|      Sales| 58000|5800.0|
++-------+-----------+------+------+
+
