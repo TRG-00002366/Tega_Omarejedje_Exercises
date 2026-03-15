@@ -1,0 +1,36 @@
+flowchart LR
+    P[Producer]
+
+    subgraph KC[Kafka Cluster]
+        subgraph B1[Broker 1]
+            P0L["orders-P0 [L]"]
+            P2F["orders-P2 [F]"]
+        end
+
+        subgraph B2[Broker 2]
+            P0F["orders-P0 [F]"]
+            P1L["orders-P1 [L]"]
+        end
+
+        subgraph B3[Broker 3]
+            P1F["orders-P1 [F]"]
+            P2L["orders-P2 [L]"]
+        end
+    end
+
+    subgraph CG[Consumer Group: order-processors]
+        C1[Consumer 1]
+        C2[Consumer 2]
+    end
+
+    P --> P0L
+    P --> P1L
+    P --> P2L
+
+    P0L -.replicated to.-> P0F
+    P1L -.replicated to.-> P1F
+    P2L -.replicated to.-> P2F
+
+    P0L --> C1
+    P1L --> C2
+    P2L --> C1
