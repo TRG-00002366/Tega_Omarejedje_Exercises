@@ -1,0 +1,45 @@
+==================================================
+KAFKA TOPIC INSPECTION
+==================================================
+
+Found 6 user topics:
+
+Topic: price-changes
+  Partitions: 2
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+
+Topic: purchases
+  Partitions: 3
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 2: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+
+Topic: inventory-updates
+  Partitions: 4
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 2: Leader=1, Replicas=[1], ISR=[1]
+  Partition 3: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+
+Topic: user-signups
+  Partitions: 2
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+
+Topic: page-views
+  Partitions: 6
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 5: Leader=1, Replicas=[1], ISR=[1]
+  Partition 4: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+  Partition 2: Leader=1, Replicas=[1], ISR=[1]
+  Partition 3: Leader=1, Replicas=[1], ISR=[1]
+
+Topic: notifications
+  Partitions: 3
+  Partition 0: Leader=1, Replicas=[1], ISR=[1]
+  Partition 1: Leader=1, Replicas=[1], ISR=[1]
+  Partition 2: Leader=1, Replicas=[1], ISR=[1]
+
+==================================================
